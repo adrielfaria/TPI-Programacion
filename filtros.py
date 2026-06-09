@@ -1,3 +1,4 @@
+# filtros.py - Funciones para filtrar países según distintos criterios
 import csv
 from validaciones import pedir_texto, pedir_numero
  
@@ -14,6 +15,7 @@ def leer_filas() -> list:
         with open(ARCHIVO, 'r', encoding='utf-8') as archivo:
             lector = csv.DictReader(archivo)
             for fila in lector:
+                # Saltear fila si todos los campos estan vacios
                 if not any(fila.values()):
                     continue
                 filas.append({
@@ -30,6 +32,7 @@ def leer_filas() -> list:
         print(f'Error inesperado: {e}')
     return filas  
 
+
 def filtrar_por_continente() -> None:
     """
     Pide al usuario ingresar el nombre del continente por el que desea filtrar y devuelve información de los paises que pertenecen a dicho continente.
@@ -38,6 +41,7 @@ def filtrar_por_continente() -> None:
     paises = leer_filas()
     resultados = []
     for pais in paises:
+        # Comparación sin distinguir mayúsculas/minúsculas
         if pais['continente'].lower() == continente.lower():
             resultados.append(pais)
     if not resultados:
@@ -45,6 +49,7 @@ def filtrar_por_continente() -> None:
         return
     for pais in resultados:
         print(f'Pais: {pais["nombre"]}, Poblacóon: {pais["poblacion"]}, Superficie: {pais["superficie"]}')
+
 
 def filtrar_por_poblacion() -> None:
     """
@@ -62,6 +67,7 @@ def filtrar_por_poblacion() -> None:
         return
     for pais in resultados:
         print(f'Pais: {pais["nombre"]}, Población: {pais["poblacion"]}, Superficie: {pais["superficie"]} Continente: {pais["continente"]}')
+
 
 def filtrar_por_superficie() -> None:
     """
@@ -81,5 +87,31 @@ def filtrar_por_superficie() -> None:
         print(f'Pais: {pais["nombre"]}, Población: {pais["poblacion"]}, Superficie: {pais["superficie"]} Continente: {pais["continente"]}')
 
 
+def filtrar_paises_por() -> None:
+    """
+    Menu principal que contendra el resto de funciones de filtrar países.
+    """
+    # Mapeo de opción para evitar if/elif encadenados
+    opciones = {
+        '1': filtrar_por_continente,
+        '2': filtrar_por_poblacion,
+        '3': filtrar_por_superficie
+    }
+
+    while True:
+        print('\n1. Filtrar paises por continente.')
+        print('2. Filtrar paises por rango de poblacion.')
+        print('3. Filtrar paises por rango de superficie.')
+        print('4. Atras')
+        opcion = input('Escoge una opcion: ')
+
+        if opcion == '4':
+            break
+        funcion = opciones.get(opcion)
+
+        if funcion:
+            funcion()
+        else:
+            print('Opcion Invalida')
 
 
