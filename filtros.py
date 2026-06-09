@@ -5,9 +5,9 @@ ARCHIVO = 'paises_prueba.csv'
 
 def leer_filas() -> list:
     """
-    Lee el archivo csv de paises y retorna sus filas como lista de diccionarios.
+    Lee el archivo csv de países y retorna sus filas como lista de diccionarios.
 
-    Saltea las filas vacias y normaliza los datos: convierte poblacion y superficie a enteros y elimina espacios en el nombre del continente.
+    Saltea las filas vacias y normaliza los datos: convierte población y superficie a enteros y elimina espacios en el nombre del continente.
     """
     filas = []
     try:
@@ -41,8 +41,27 @@ def filtrar_por_continente() -> None:
         if pais['continente'].lower() == continente.lower():
             resultados.append(pais)
     if not resultados:
-        print('No se han encontrado paises en ese continente.')
+        print('No se han encontrado países en ese continente.')
         return
     for pais in resultados:
-        print(f'Pais: {pais["nombre"]}, Poblacion: {pais["poblacion"]}, Superficie: {pais['superficie']}')
+        print(f'Pais: {pais["nombre"]}, Poblacóon: {pais["poblacion"]}, Superficie: {pais["superficie"]}')
+
+def filtrar_por_poblacion() -> None:
+    """
+    Pide al usuario ingresar una población mínima y una máxima y devuelve los países que se encuentran dentro de ese rango.
+    """
+    minima = int(pedir_numero('Población mínima: '))
+    maxima = int(pedir_numero('Población máxima: '))
+    paises = leer_filas()
+    resultados = []
+    for pais in paises:
+        if minima <= pais['poblacion'] <= maxima:
+            resultados.append(pais)
+    if not resultados:
+        print('No se han encontrado países en ese rango de población.')
+        return
+    for pais in resultados:
+        print(f'Pais: {pais["nombre"]}, Población: {pais["poblacion"]}, Superficie: {pais["superficie"]} Continente: {pais["continente"]}')
+
+
 
