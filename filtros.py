@@ -63,5 +63,23 @@ def filtrar_por_poblacion() -> None:
     for pais in resultados:
         print(f'Pais: {pais["nombre"]}, Población: {pais["poblacion"]}, Superficie: {pais["superficie"]} Continente: {pais["continente"]}')
 
+def filtrar_por_superficie() -> None:
+    """
+    Pide al usuario ingresar una superficie mínima y una máxima y devuelve los países que se encuentran dentro de ese rango.
+    """
+    minima = int(pedir_numero('Superficie mínima: '))
+    maxima = int(pedir_numero('Superficie máxima: '))
+    paises = leer_filas()
+    resultados = []
+    for pais in paises:
+        if minima <= pais['superficie'] <= maxima:
+            resultados.append(pais)
+    if not resultados:
+        print('No se han encontrado países en ese rango de superficie.')
+        return
+    for pais in resultados:
+        print(f'Pais: {pais["nombre"]}, Población: {pais["poblacion"]}, Superficie: {pais["superficie"]} Continente: {pais["continente"]}')
+
+
 
 
