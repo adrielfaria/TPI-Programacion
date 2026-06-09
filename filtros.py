@@ -16,6 +16,7 @@ def filtrar_por_continente() -> None:
     if not resultados:
         print('No se han encontrado países en ese continente.')
         return
+    print()
     for pais in resultados:
         print(f'Pais: {pais["nombre"]}, Poblacóon: {pais["poblacion"]}, Superficie: {pais["superficie"]}')
 
@@ -34,6 +35,7 @@ def filtrar_por_poblacion() -> None:
     if not resultados:
         print('No se han encontrado países en ese rango de población.')
         return
+    print()
     for pais in resultados:
         print(f'Pais: {pais["nombre"]}, Población: {pais["poblacion"]}, Superficie: {pais["superficie"]} Continente: {pais["continente"]}')
 
@@ -52,6 +54,7 @@ def filtrar_por_superficie() -> None:
     if not resultados:
         print('No se han encontrado países en ese rango de superficie.')
         return
+    print()
     for pais in resultados:
         print(f'Pais: {pais["nombre"]}, Población: {pais["poblacion"]}, Superficie: {pais["superficie"]} Continente: {pais["continente"]}')
 
