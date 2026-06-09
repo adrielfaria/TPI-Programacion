@@ -1,6 +1,7 @@
 import csv
+from validaciones import pedir_texto, pedir_numero
  
-ARCHIVO = 'paises.csv'
+ARCHIVO = 'paises_prueba.csv'
 
 def leer_filas() -> list:
     """
@@ -28,3 +29,20 @@ def leer_filas() -> list:
     except Exception as e:
         print(f'Error inesperado: {e}')
     return filas  
+
+def filtrar_por_continente() -> None:
+    """
+    Pide al usuario ingresar el nombre del continente por el que desea filtrar y devuelve información de los paises que pertenecen a dicho continente.
+    """
+    continente = pedir_texto('Ingrese el nombre del continente por el que desea filtrar: ')
+    paises = leer_filas()
+    resultados = []
+    for pais in paises:
+        if pais['continente'].lower() == continente.lower():
+            resultados.append(pais)
+    if not resultados:
+        print('No se han encontrado paises en ese continente.')
+        return
+    for pais in resultados:
+        print(f'Pais: {pais["nombre"]}, Poblacion: {pais["poblacion"]}, Superficie: {pais['superficie']}')
+
