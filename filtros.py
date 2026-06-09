@@ -86,5 +86,3 @@ def filtrar_paises_por() -> None:
         else:
             print('Opcion Invalida')
 
-filtrar_paises_por()
-
