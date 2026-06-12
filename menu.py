@@ -39,6 +39,3 @@ def mostrar_menu():
                 break
 
         else: print('Opcion Invalida')
-
-
-mostrar_menu()
