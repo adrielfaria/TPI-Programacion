@@ -18,7 +18,7 @@ def filtrar_por_continente() -> None:
         return
     print()
     for pais in resultados:
-        print(f'Pais: {pais["nombre"]}, Poblacóon: {pais["poblacion"]}, Superficie: {pais["superficie"]}')
+        print(f'Pais: {pais["nombre"]}, Población: {pais["poblacion"]}, Superficie: {pais["superficie"]}')
 
 
 def filtrar_por_poblacion() -> None:

@@ -1,6 +1,10 @@
+from validaciones import pedir_texto, pedir_numero
+from archivo import escribir_pais, reescribir_archivo
+
+
 def buscar_pais(paises):
     # Pedir el nombre a buscar y guardar los resultados
-    nombre_buscado = input("Ingrese el nombre del país: ").strip().lower()
+    nombre_buscado = pedir_texto("Ingrese el nombre del país: ").strip().lower()
     encontrados = []
 
     for pais in paises:
@@ -24,40 +28,30 @@ def buscar_pais(paises):
 
 def agregar_pais(paises):
     # Solicitar datos del país y guardarlos en la lista
-    nombre = input("Nombre del país: ").strip()
-
-    if nombre == "":
-        print("El nombre no puede estar vacío.")
-        return
+    nombre = pedir_texto("Nombre del país: ").strip()
 
     for pais in paises:
         if pais["nombre"].lower() == nombre.lower():
             print("Ese país ya existe.")
             return
 
-    poblacion = int(input("Población: "))
-    superficie = int(input("Superficie: "))
-    continente = input("Continente: ").strip()
+    poblacion = int(pedir_numero("Población: "))
+    superficie = int(pedir_numero("Superficie: "))
+    continente = pedir_texto("Continente: ").strip()
 
-    nuevo_pais = {
-        "nombre": nombre,
-        "poblacion": poblacion,
-        "superficie": superficie,
-        "continente": continente,
-    }
-
-    paises.append(nuevo_pais)
+    escribir_pais(nombre, poblacion, superficie, continente)
     print("País agregado correctamente.")
 
 
 def actualizar_pais(paises):
     # Buscar el país por nombre y actualizar sus datos
-    nombre = input("Ingrese el país a actualizar: ").strip()
+    nombre = pedir_texto("Ingrese el país a actualizar: ").strip()
 
     for pais in paises:
         if pais["nombre"].lower() == nombre.lower():
-            pais["poblacion"] = int(input("Nueva población: "))
-            pais["superficie"] = int(input("Nueva superficie: "))
+            pais["poblacion"] = int(pedir_numero("Nueva población: "))
+            pais["superficie"] = int(pedir_numero("Nueva superficie: "))
+            reescribir_archivo(paises)
             print("País actualizado correctamente.")
             return
 

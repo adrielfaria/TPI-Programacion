@@ -1,4 +1,3 @@
-from validaciones import pedir_numero   # Se importa la función pedir_numero desde el módulo validaciones
 from operaciones import agregar_pais, actualizar_pais, buscar_pais
 from filtros import filtrar_paises_por
 from ordenar import ordenar_paises
@@ -6,7 +5,7 @@ from estadisticas import mostrar_estadisticas
 from archivo import leer_filas
 
 def salir():
-    print('Terminando la ejecuccion del programa')
+    print('Terminando la ejecución del programa')
     return False
 
 def mostrar_menu():
@@ -29,7 +28,7 @@ def mostrar_menu():
         print("6) Mostrar estadísticas")
         print("7) Salir")
 
-        opcion = pedir_numero("\nSeleccione una opción: ")
+        opcion = input("\nSeleccione una opción: ")
 
         funcion = opciones.get(opcion)
 

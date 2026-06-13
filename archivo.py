@@ -1,5 +1,6 @@
 import csv
 ARCHIVO = 'paises_prueba.csv'
+CAMPOS = ['nombre', 'poblacion', 'superficie', 'continente']
 
 def leer_filas() -> list:
     """
@@ -15,16 +16,42 @@ def leer_filas() -> list:
                 # Saltear fila si todos los campos estan vacios
                 if not any(fila.values()):
                     continue
-                filas.append({
-                'nombre': fila['nombre'],
-                'poblacion': int(fila['poblacion']),
-                'superficie': int(fila['superficie']),
-                'continente': fila['continente'].strip()
-            })
+                try:
+                    filas.append({
+                    'nombre': fila['nombre'],
+                    'poblacion': int(fila['poblacion']),
+                    'superficie': int(fila['superficie']),
+                    'continente': fila['continente'].strip()
+                })
+                except (ValueError, KeyError, AttributeError):
+                    print(f"Fila con formato inválido, se omite: {fila}")
+
     except FileNotFoundError:
         print(f'El archivo {ARCHIVO} no existe.')
-    except ValueError:
-        print('Error: el archivo tiene un formato incorrecto.')
     except Exception as e:
         print(f'Error inesperado: {e}')
     return filas   
+
+def escribir_pais(nombre, poblacion, superficie, continente) -> None:
+    """
+    Agrega los valores ingresados por el usuario al archivo csv usando csv.writer.
+    """
+    try:
+        with open(ARCHIVO, 'a', encoding='utf-8', newline='') as archivo:
+            escritor = csv.writer(archivo)
+            escritor.writerow([nombre, poblacion, superficie, continente])
+    except Exception as e:
+        print(f'Error al escribir en el archivo: {e}')
+
+def reescribir_archivo(paises: list) -> None:
+    """
+    Reescribe los valores de superficie y población en el archivo csv.
+    """
+    try:
+        with open(ARCHIVO, 'w', encoding='utf-8', newline='') as archivo:
+            escritor = csv.DictWriter(archivo, fieldnames=CAMPOS)
+            escritor.writeheader()
+            for pais in paises:
+                escritor.writerow(pais)
+    except Exception as e:
+        print(f'Error al escribir en el archivo: {e}')

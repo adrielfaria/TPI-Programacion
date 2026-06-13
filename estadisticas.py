@@ -97,7 +97,7 @@ def mostrar_estadisticas(paises):
 
     print(
         f"Promedio de superficie: "
-        f"{promedio_superficie(paises):.2f}"
+        f"{promedio_superficie(paises):.2f} km2"
     )
 
     print("\nCantidad de países por continente:")
