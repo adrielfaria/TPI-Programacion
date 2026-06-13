@@ -18,7 +18,7 @@ def filtrar_por_continente() -> None:
         return
     print()
     for pais in resultados:
-        print(f'Pais: {pais["nombre"]}, Población: {pais["poblacion"]}, Superficie: {pais["superficie"]}')
+        print(f'Pais: {pais["nombre"]} | Población: {pais["poblacion"]} habitantes | Superficie: {pais["superficie"]} km2')
 
 
 def filtrar_por_poblacion() -> None:
@@ -37,7 +37,7 @@ def filtrar_por_poblacion() -> None:
         return
     print()
     for pais in resultados:
-        print(f'Pais: {pais["nombre"]}, Población: {pais["poblacion"]}, Superficie: {pais["superficie"]} Continente: {pais["continente"]}')
+        print(f'Pais: {pais["nombre"]}| Población: {pais["poblacion"]} habitantes | Superficie: {pais["superficie"]} km2 | Continente: {pais["continente"]}')
 
 
 def filtrar_por_superficie() -> None:
@@ -56,7 +56,7 @@ def filtrar_por_superficie() -> None:
         return
     print()
     for pais in resultados:
-        print(f'Pais: {pais["nombre"]}, Población: {pais["poblacion"]}, Superficie: {pais["superficie"]} Continente: {pais["continente"]}')
+        print(f'Pais: {pais["nombre"]} | Población: {pais["poblacion"]} habitantes | Superficie: {pais["superficie"]} km2 | Continente: {pais["continente"]}')
 
 
 def filtrar_paises_por() -> None:

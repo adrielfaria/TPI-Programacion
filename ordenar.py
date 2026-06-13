@@ -65,6 +65,6 @@ def ordenar_paises() -> None:
             print('')
             datos = funcion()
             for dato in datos:
-                print(f'Pais: {dato["nombre"]}, Poblacion: {dato["poblacion"]}, Superficie: {dato["superficie"]}, Continente: {dato["continente"]}')
+                print(f'Pais: {dato["nombre"]} | Poblacion: {dato["poblacion"]} habitantes | Superficie: {dato["superficie"]} km2 | Continente: {dato["continente"]}')
         else:
             print('Opcion Inválida')
